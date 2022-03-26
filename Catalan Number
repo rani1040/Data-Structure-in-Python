@@ -1,5 +1,4 @@
-In combinatorial mathematics, the Catalan numbers are a sequence of natural numbers that occur in various counting problems,
-often involving recursively defined objects.
+In combinatorial mathematics, the Catalan numbers are a sequence of natural numbers that occur in various counting problems,often involving recursively defined objects.
 Catalan numbers are a mathematical sequence that consists of positive integers, which can be used to find the number of possibilities of various combinations.
 The first Catalan numbers for n = 0, 1, 2, 3, ... are
 
@@ -32,12 +31,9 @@ The first Catalan numbers for n = 0, 1, 2, 3, ... are
  6. Number of ways a convex polygon of n+2 sides can split into triangles by connecting vertices.
  7. Find the number of permutations in the set of integers between one and nine {1, 2, 3, 4, 5, 6, 7, 8, 9}, wherein none of the permutations include three consecutive integers.
  
- 
- 
- 
-  Count the number of possible Binary Search Trees can be formed using with n keys
-  
-  #code
+
+Count the number of possible Binary Search Trees can be formed using with n keys
+#code
  def uniquebst(n):
     n1,n2,sum=0,0,0
     #base case
