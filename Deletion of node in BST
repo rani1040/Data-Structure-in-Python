@@ -1,0 +1,81 @@
+# we have to remove a node from bst with maintaining the properties of bst
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+class Solution:
+    def deleteNode(self, root: Optional[TreeNode], key: int) -> Optional[TreeNode]:
+        value = key
+        return self.helper(root,value)
+    def helper(self,root,value,parent_node=None):
+        #we will create a node that is current node which at the root node
+        currnode=root
+        #step 1--search for the node to delete
+        while currnode:
+            if currnode.val>value:
+                parent_node=currnode
+                currnode=currnode.left
+            elif currnode.val<value:
+                parent_node=currnode
+                currnode=currnode.right
+            else:
+                # this is a condition where we have found our element
+                # there can be many case
+
+                # case 1: when node to delete has two subtres
+                if currnode.left and currnode.right:
+                    if currnode.left and currnode.right:
+                        #we are calculating smallest node from right substree
+                        currnode.val=self.getmin(currnode.right)
+                        # we are recursively removing that node
+                        self.helper(currnode.right,currnode.val,currnode)
+
+                #case 2 : when node to delete has only one subtree
+                else:
+                    #root has to delete
+                    if parent_node is None:
+                        if currnode.left:
+                            currnode.val=currnode.left.val
+                            currnode.left=currnode.left.left
+                            currnode.right=currnode.left.right
+
+                        elif currnode.right:
+                            currnode.val=currnode.right.val
+                            currnode.left=currnode.right.left
+                            currnode.right=currnode.right.right
+                        else:
+                            return
+
+                    #when node is in left subtree
+                    elif parent_node.left==currnode:
+                        parent_node.left=currnode.left if currnode.left is not None else currnode.right
+                    #when node is in right subtree
+                    elif parent_node.right==currnode:
+                        parent_node.right=currnode.right if currnode.right is not None else currnode.left
+                    break
+
+    def getmin(self, right):
+        currnode = right
+        while currnode:
+            currnode = currnode.left
+        return currnode.val
+
+
+this is  from leetcode 
+Delete a node in BST
+Deletion of a node in BST has 2 major step:
+
+1.Search -- for the value.
+2.Remove -- the value. #has 2 case
+    Removal has 2 Case in it:
+       1. When the root has 2 subtree.
+       2.When root node has only one subtree.
+Case 1: When the root has 2 subtree.
+Rule:
+  Take the smallest value node from the right subtree. ie, left most node of the right subtree.
+  Now replace the curNode with this smallest node
+Case 2: When root node has only one subtree, has 3 scenario:
+      1. When we have to delete the root node.
+      2.when we have to delete a node in between.
+      3.when there is only one node.
