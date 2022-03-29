@@ -1,0 +1,19 @@
+#brute force
+ def isBST(self, root):
+        if root==None:
+            return 0
+        temp=root
+        tempr=root
+        max=temp.data
+        min=tempr.data
+        while temp.left :
+            if temp.data>max:
+                return 0
+            temp=temp.left
+        while tempr.right:
+            if tempr.data<min:
+                tempr=temp.right
+                return 0
+            
+        return 1
+ 
